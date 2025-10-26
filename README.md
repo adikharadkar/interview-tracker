@@ -21,7 +21,7 @@ The goal of this project is to help users efficiently manage and track their job
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React, TypeScript, Tailwind CSS  
+- **Frontend:** React, TypeScript, CSS  
 - **State Management:** Context API / Redux (TBD)  
 - **Charts:** Recharts  
 - **Backend (Planned):** Node.js, Express, MongoDB
