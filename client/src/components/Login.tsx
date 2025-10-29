@@ -1,18 +1,14 @@
 import { useState } from "react";
 
-interface FormProps {
-  email: string;
-  password: string;
-}
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import type { FormDataProps } from "../utils/constants";
+import ValidateField from "../utils/ValidateField";
 
 const Login = () => {
-  const [formData, setFormData] = useState<FormProps>({
+  const [formData, setFormData] = useState<FormDataProps>({
     email: "",
     password: "",
   });
-  const [errors, setErrors] = useState<FormProps>({
+  const [errors, setErrors] = useState<FormDataProps>({
     email: "",
     password: "",
   });
@@ -23,24 +19,16 @@ const Login = () => {
   };
 
   const validate = () => {
-    let newErrors: FormProps = {
+    let newErrors: FormDataProps = {
       email: "",
       password: "",
     };
     let isValid = true;
 
-    if (formData.email.trim().length === 0) {
-      newErrors.email = "Email is required!";
-      isValid = false;
-    } else if (!EMAIL_REGEX.test(formData.email)) {
-      newErrors.email = "Invalid email!";
-      isValid = false;
-    }
+    newErrors.email = ValidateField("email", formData.email);
+    newErrors.password = ValidateField("password", formData.password);
 
-    if (formData.password.trim().length < 8) {
-      newErrors.password = "Password must contain at least 8 characters!";
-      isValid = false;
-    }
+    if (newErrors.email || newErrors.password) isValid = false;
 
     setErrors(newErrors);
     return isValid;

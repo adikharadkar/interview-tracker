@@ -1,20 +1,19 @@
 import { useState } from "react";
 
-interface formDataProps {
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import ValidateField from "../utils/ValidateField";
+import type { FormDataProps } from "../utils/constants";
 
 const Signup = () => {
-  const [formData, setFormData] = useState<formDataProps>({
+  const [formData, setFormData] = useState<FormDataProps>({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
   });
-  const [errors, setErrors] = useState<formDataProps>({
+  const [errors, setErrors] = useState<FormDataProps>({
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -30,30 +29,25 @@ const Signup = () => {
 
   const validate = () => {
     let newErrors = {
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       confirmPassword: "",
     };
     let isValid = true;
 
-    if (formData.email.trim().length === 0) {
-      newErrors.email = "Email is required!";
-      isValid = false;
-    } else if (!EMAIL_REGEX.test(formData.email.trim())) {
-      newErrors.email = "Invalid email!";
-      isValid = false;
-    }
+    newErrors.firstName = ValidateField("firstName", formData?.firstName ?? "");
+    newErrors.lastName = ValidateField("lastName", formData?.lastName ?? "");
+    newErrors.email = ValidateField("email", formData.email);
+    newErrors.password = ValidateField("password", formData.password);
 
-    if (formData.password.trim().length < 8) {
-      newErrors.password = "Password must contain at least 8 characters!";
-      isValid = false;
-    }
-
-    if (formData.confirmPassword.trim().length < 8) {
+    if (newErrors.email || newErrors.password) isValid = false;
+    if ((formData.confirmPassword?.trim().length ?? 0) < 8) {
       newErrors.confirmPassword =
         "Password must contain at least 8 characters!";
       isValid = false;
-    } else if (formData.confirmPassword.trim() !== formData.password.trim()) {
+    } else if (formData?.confirmPassword?.trim() !== formData.password.trim()) {
       newErrors.confirmPassword = "Passwords do not match!";
       isValid = false;
     }
@@ -73,6 +67,30 @@ const Signup = () => {
     <div>
       <h2>Create Account</h2>
       <form>
+        <div>
+          <label htmlFor="firstName">First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            placeholder="Enter first name"
+            id="firstName"
+            onChange={handleInputChange}
+            value={formData.firstName}
+          />
+          <span>{errors.firstName}</span>
+        </div>
+        <div>
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Enter last name"
+            id="lastName"
+            onChange={handleInputChange}
+            value={formData.lastName}
+          />
+          <span>{errors.lastName}</span>
+        </div>
         <div>
           <label htmlFor="email">Email</label>
           <input
