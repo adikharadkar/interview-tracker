@@ -2,9 +2,11 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const AuthRouter = require("./src/routes/Auth");
+const cors = require("cors");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const port = process.env.PORT;
 const databaseUrl = process.env.DATABASE_URL;

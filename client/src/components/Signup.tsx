@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 import ValidateField from "../utils/ValidateField";
 import type { FormDataProps } from "../utils/constants";
@@ -18,6 +20,8 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -56,11 +60,35 @@ const Signup = () => {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      console.log(formData);
-      setFormData({ email: "", password: "", confirmPassword: "" });
+      try {
+        const response = await fetch("http://localhost:5000/auth/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        const { token } = await response.json();
+        Cookies.set("authToken", token, {
+          expires: 1 / 24,
+          sameSite: "Lax",
+          "http-only": true,
+          secure: false,
+        });
+        navigate("/");
+      } catch (error) {
+        console.error("Error during signup:", error);
+      }
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
     }
   };
   return (
