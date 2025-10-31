@@ -1,0 +1,16 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid;
+}
+
+.navbar__items {
+  display: flex;
+  justify-content: space-between;
+  width: 30vw;
+}
+
+li {
+  list-style: none;
+}
