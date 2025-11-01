@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { FiBookmark } from "react-icons/fi";
 
-import Navbar from "../components/Navbar";
 import Tile from "../components/Tile";
 import ApplicationsTable from "../components/ApplicationsTable";
 import { applications } from "../utils/constants";
@@ -22,7 +21,6 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="content">
         <div className="dashboard__tiles">
           <Tile
