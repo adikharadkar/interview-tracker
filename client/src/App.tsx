@@ -1,12 +1,14 @@
-import { Box, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import CloseIcon from "@mui/icons-material/Close";
 
 import "./App.css";
 import Sidebar from "./components/Sidebar";
 import AuthPage from "./pages/AuthPage";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
+import ApplicationForm from "./components/ApplicationForm";
 
 function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -14,8 +16,19 @@ function App() {
     <>
       <Navbar onOpen={setIsOpen} />
       <Sidebar isOpen={isOpen}>
-        <h1>Add Application</h1>
-        <Button onClick={() => setIsOpen(false)}>Close</Button>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          margin="30px"
+          alignItems="center"
+        >
+          <Typography variant="h5">Add Application</Typography>
+          <CloseIcon
+            sx={{ cursor: "pointer" }}
+            onClick={() => setIsOpen(false)}
+          />
+        </Box>
+        <ApplicationForm onOpen={setIsOpen} />
       </Sidebar>
       <Box
         className={isOpen ? "backdrop open" : "backdrop"}

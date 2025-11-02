@@ -8,6 +8,7 @@
   right: -40vw;
   z-index: 1000;
   transition: 500ms;
+  overflow-y: auto;
   /* box-shadow: 0 0 5px 0 #ccc; */
 }
 
