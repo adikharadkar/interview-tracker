@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import ValidateField from "../utils/ValidateField";
 import type { FormDataProps } from "../utils/constants";
+import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 
 const Signup = () => {
   const [formData, setFormData] = useState<FormDataProps>({
@@ -92,72 +93,91 @@ const Signup = () => {
     }
   };
   return (
-    <div>
-      <h2>Create Account</h2>
-      <form>
-        <div>
-          <label htmlFor="firstName">First Name</label>
-          <input
+    <Box>
+      <Typography variant="h5" textAlign="center">
+        Create Account
+      </Typography>
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={2}
+        justifyContent="space-between"
+      >
+        <Box display="flex" flexDirection="column" gap={1}>
+          <InputLabel htmlFor="firstName">First Name</InputLabel>
+          <TextField
             type="text"
             name="firstName"
             placeholder="Enter first name"
             id="firstName"
             onChange={handleInputChange}
             value={formData.firstName}
+            variant="outlined"
+            helperText={errors.firstName}
+            error={!!errors.firstName}
           />
-          <span>{errors.firstName}</span>
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name</label>
-          <input
+        </Box>
+        <Box display="flex" flexDirection="column" gap={1}>
+          <InputLabel htmlFor="lastName">Last Name</InputLabel>
+          <TextField
             type="text"
             name="lastName"
             placeholder="Enter last name"
             id="lastName"
             onChange={handleInputChange}
             value={formData.lastName}
+            helperText={errors.lastName}
+            error={!!errors.lastName}
           />
-          <span>{errors.lastName}</span>
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
+        </Box>
+        <Box display="flex" flexDirection="column" gap={1}>
+          <InputLabel htmlFor="email">Email</InputLabel>
+          <TextField
             type="email"
             name="email"
             placeholder="Enter email"
             id="email"
             onChange={handleInputChange}
             value={formData.email}
+            error={!!errors.email}
+            helperText={errors.email}
           />
-          <span>{errors.email}</span>
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
+        </Box>
+        <Box display="flex" flexDirection="column" gap={1}>
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <TextField
             type="password"
             name="password"
             id="password"
             placeholder="Enter password"
             onChange={handleInputChange}
             value={formData.password}
+            error={!!errors.password}
+            helperText={errors.password}
           />
-          <span>{errors.password}</span>
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
+        </Box>
+        <Box display="flex" flexDirection="column" gap={1}>
+          <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
+          <TextField
             type="password"
             name="confirmPassword"
             id="confirmPassword"
             placeholder="Re-enter password"
             onChange={handleInputChange}
             value={formData.confirmPassword}
+            error={!!errors.confirmPassword}
+            helperText={errors.confirmPassword}
           />
-          <span>{errors.confirmPassword}</span>
-        </div>
-        <button onClick={handleSubmit}>Sign Up</button>
-      </form>
-    </div>
+        </Box>
+        <Button
+          onClick={handleSubmit}
+          variant="contained"
+          sx={{ fontWeight: "bold" }}
+        >
+          Sign Up
+        </Button>
+      </Box>
+    </Box>
   );
 };
 

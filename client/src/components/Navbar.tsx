@@ -26,14 +26,16 @@ const Navbar = ({
         }}
       >
         <Typography variant="h5">Interview Tracker</Typography>
-        <Box display="flex" justifyContent="space-between" width="20vw">
-          <Button variant="contained" onClick={() => onOpen(true)}>
-            Add Application
-          </Button>
-          <Button variant="outlined" onClick={handleLogout}>
-            Logout
-          </Button>
-        </Box>
+        {Cookies.get("token") && (
+          <Box display="flex" justifyContent="space-between" width="20vw">
+            <Button variant="contained" onClick={() => onOpen(true)}>
+              Add Application
+            </Button>
+            <Button variant="outlined" onClick={handleLogout}>
+              Logout
+            </Button>
+          </Box>
+        )}
       </Toolbar>
     </AppBar>
     // <nav className="navbar">

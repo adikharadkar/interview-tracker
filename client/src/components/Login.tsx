@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import type { FormDataProps } from "../utils/constants";
 import ValidateField from "../utils/ValidateField";
+import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 
 const Login = () => {
   const [formData, setFormData] = useState<FormDataProps>({
@@ -72,36 +73,51 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <h2>Log In</h2>
-      <form>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
+    <Box>
+      <Typography variant="h5" textAlign="center">
+        Log In To Your Account
+      </Typography>
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={2}
+        justifyContent="space-between"
+      >
+        <Box display="flex" flexDirection="column" gap={1}>
+          <InputLabel htmlFor="email">Email</InputLabel>
+          <TextField
             type="email"
             name="email"
             placeholder="Enter email"
             id="email"
             value={formData.email}
             onChange={handleInputChange}
+            helperText={errors.email}
+            error={!!errors.email}
           />
-          <span>{errors.email}</span>
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
+        </Box>
+        <Box display="flex" flexDirection="column" gap={1}>
+          <InputLabel htmlFor="password">Password</InputLabel>
+          <TextField
             type="password"
             name="password"
             id="password"
             placeholder="Enter password"
             value={formData.password}
             onChange={handleInputChange}
+            helperText={errors.password}
+            error={!!errors.password}
           />
-          <span>{errors.password}</span>
-        </div>
-        <button onClick={handleSubmit}>Log In</button>
-      </form>
-    </div>
+        </Box>
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
+          sx={{ fontWeight: "bold" }}
+        >
+          Log In
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
