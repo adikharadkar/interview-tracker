@@ -8,6 +8,7 @@ import ApplicationsTable from "../components/ApplicationsTable";
 // import { applications } from "../utils/constants";
 import "../styles/Dashboard.css";
 import BasicPie from "../components/BasicPie";
+import { Box } from "@mui/material";
 
 const Dashboard = () => {
   const [applicationData, setApplicationData] = useState([]);
@@ -50,28 +51,38 @@ const Dashboard = () => {
   return (
     <div>
       <div className="content">
-        <div className="dashboard__tiles">
+        <Box
+          display="flex"
+          gap={3}
+          flexWrap="wrap"
+          justifyContent="center"
+          margin="20px"
+        >
           <Tile
             tileName="Total Applications"
             applicationCount={applicationData.length}
             icon={<FiBookmark size={24} />}
+            iconBg="#eff6ff"
           />
           <Tile
             tileName="Interviews Scheduled"
             applicationCount={25}
             icon={<FiBookmark size={24} />}
+            iconBg="#fff7ed"
           />
           <Tile
             tileName="Total Applications"
             applicationCount={25}
             icon={<FiBookmark size={24} />}
+            iconBg="#ecfdf5"
           />
           <Tile
             tileName="Total Applications"
             applicationCount={25}
             icon={<FiBookmark size={24} />}
+            iconBg="#fee2e2"
           />
-        </div>
+        </Box>
         <ApplicationsTable tableData={applicationData} />
         <BasicPie applications={applicationData} />
       </div>

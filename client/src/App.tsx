@@ -9,6 +9,7 @@ import Sidebar from "./components/Sidebar";
 import AuthPage from "./pages/AuthPage";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
+import Application from "./pages/Application";
 import ApplicationForm from "./components/ApplicationForm";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/application/:id" element={<Application />} />
       </Routes>
     </>
   );

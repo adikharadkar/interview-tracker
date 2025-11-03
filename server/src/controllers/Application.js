@@ -23,4 +23,14 @@ async function GetAllApplications(req, res) {
   }
 }
 
-module.exports = { AddApplication, GetAllApplications };
+async function ViewApplication(req, res) {
+  try {
+    const id = req.params.id;
+    const application = await Application.findOne({ _id: id });
+    return res.status(200).json({ message: "Success", application });
+  } catch (err) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
+
+module.exports = { AddApplication, GetAllApplications, ViewApplication };

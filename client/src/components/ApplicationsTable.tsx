@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "@mui/material/Link";
+import { Link as NavLink } from "react-router-dom";
 
 import type { TableDataProps } from "../utils/constants";
 import GetStatusStyles from "../utils/GetStatusStyles";
@@ -29,19 +30,19 @@ const ApplicationsTable = ({ tableData }: IProps) => {
             <TableCell sx={{ fontWeight: "bold" }}>Job Link</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Salary Range</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Location</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>Actions</TableCell>
             <TableCell sx={{ fontWeight: "bold" }} align="right">
               Date
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {tableData.map((data, index) => (
+          {tableData.map((data) => (
             <TableRow
-              key={index}
+              key={data._id}
               sx={{
                 "&:hover": {
                   backgroundColor: "#f5f5f5",
-                  cursor: "pointer",
                 },
                 transition: "background-color 0.2 ease",
               }}
@@ -70,6 +71,11 @@ const ApplicationsTable = ({ tableData }: IProps) => {
               </TableCell>
               <TableCell>{data.salaryRange}</TableCell>
               <TableCell>{data.location}</TableCell>
+              <TableCell>
+                <NavLink to={`/application/${data._id}`}>
+                  View Application
+                </NavLink>
+              </TableCell>
               <TableCell align="right">{data.dateApplied}</TableCell>
             </TableRow>
           ))}

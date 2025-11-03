@@ -9,6 +9,7 @@ export interface FormDataProps {
 }
 
 export interface TableDataProps {
+  _id: string | undefined;
   companyName: String;
   role: String;
   status: "Applied" | "Interviewing" | "Offer" | "Rejected";
