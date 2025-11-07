@@ -49,11 +49,10 @@ const Signup = () => {
 
     if (newErrors.email || newErrors.password) isValid = false;
     if ((formData.confirmPassword?.trim().length ?? 0) < 8) {
-      newErrors.confirmPassword =
-        "Password must contain at least 8 characters!";
+      newErrors.confirmPassword = "Password must contain at least 8 characters";
       isValid = false;
     } else if (formData?.confirmPassword?.trim() !== formData.password.trim()) {
-      newErrors.confirmPassword = "Passwords do not match!";
+      newErrors.confirmPassword = "Passwords do not match";
       isValid = false;
     }
 
@@ -94,7 +93,7 @@ const Signup = () => {
   };
   return (
     <Box>
-      <Typography variant="h5" textAlign="center">
+      <Typography variant="h5" textAlign="center" data-testid="pageTitle">
         Create Account
       </Typography>
       <Box
@@ -104,7 +103,9 @@ const Signup = () => {
         justifyContent="space-between"
       >
         <Box display="flex" flexDirection="column" gap={1}>
-          <InputLabel htmlFor="firstName">First Name</InputLabel>
+          <InputLabel htmlFor="firstName" data-testid="firstNameLabel">
+            First Name
+          </InputLabel>
           <TextField
             type="text"
             name="firstName"
@@ -115,10 +116,19 @@ const Signup = () => {
             variant="outlined"
             helperText={errors.firstName}
             error={!!errors.firstName}
+            slotProps={{
+              input: {
+                inputProps: {
+                  "data-testid": "firstNameInput",
+                },
+              },
+            }}
           />
         </Box>
         <Box display="flex" flexDirection="column" gap={1}>
-          <InputLabel htmlFor="lastName">Last Name</InputLabel>
+          <InputLabel htmlFor="lastName" data-testid="lastNameLabel">
+            Last Name
+          </InputLabel>
           <TextField
             type="text"
             name="lastName"
@@ -128,10 +138,19 @@ const Signup = () => {
             value={formData.lastName}
             helperText={errors.lastName}
             error={!!errors.lastName}
+            slotProps={{
+              input: {
+                inputProps: {
+                  "data-testid": "lastNameInput",
+                },
+              },
+            }}
           />
         </Box>
         <Box display="flex" flexDirection="column" gap={1}>
-          <InputLabel htmlFor="email">Email</InputLabel>
+          <InputLabel htmlFor="email" data-testid="emailLabel">
+            Email
+          </InputLabel>
           <TextField
             type="email"
             name="email"
@@ -141,10 +160,19 @@ const Signup = () => {
             value={formData.email}
             error={!!errors.email}
             helperText={errors.email}
+            slotProps={{
+              input: {
+                inputProps: {
+                  "data-testid": "emailInput",
+                },
+              },
+            }}
           />
         </Box>
         <Box display="flex" flexDirection="column" gap={1}>
-          <InputLabel htmlFor="password">Password</InputLabel>
+          <InputLabel htmlFor="password" data-testid="passwordLabel">
+            Password
+          </InputLabel>
           <TextField
             type="password"
             name="password"
@@ -154,10 +182,22 @@ const Signup = () => {
             value={formData.password}
             error={!!errors.password}
             helperText={errors.password}
+            slotProps={{
+              input: {
+                inputProps: {
+                  "data-testid": "passwordInput",
+                },
+              },
+            }}
           />
         </Box>
         <Box display="flex" flexDirection="column" gap={1}>
-          <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
+          <InputLabel
+            htmlFor="confirmPassword"
+            data-testid="confirmPasswordLabel"
+          >
+            Confirm Password
+          </InputLabel>
           <TextField
             type="password"
             name="confirmPassword"
@@ -167,12 +207,20 @@ const Signup = () => {
             value={formData.confirmPassword}
             error={!!errors.confirmPassword}
             helperText={errors.confirmPassword}
+            slotProps={{
+              input: {
+                inputProps: {
+                  "data-testid": "confirmPasswordInput",
+                },
+              },
+            }}
           />
         </Box>
         <Button
           onClick={handleSubmit}
           variant="contained"
           sx={{ fontWeight: "bold" }}
+          data-testid="signupButton"
         >
           Sign Up
         </Button>

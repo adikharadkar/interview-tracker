@@ -74,7 +74,7 @@ const Login = () => {
   };
   return (
     <Box>
-      <Typography variant="h5" textAlign="center">
+      <Typography variant="h5" textAlign="center" data-testid="pageTitle">
         Log In To Your Account
       </Typography>
       <Box
@@ -84,10 +84,19 @@ const Login = () => {
         justifyContent="space-between"
       >
         <Box display="flex" flexDirection="column" gap={1}>
-          <InputLabel htmlFor="email">Email</InputLabel>
+          <InputLabel htmlFor="email" data-testid="emailLabel">
+            Email
+          </InputLabel>
           <TextField
             type="email"
             name="email"
+            slotProps={{
+              input: {
+                inputProps: {
+                  "data-testid": "emailInput",
+                },
+              },
+            }}
             placeholder="Enter email"
             id="email"
             value={formData.email}
@@ -97,10 +106,19 @@ const Login = () => {
           />
         </Box>
         <Box display="flex" flexDirection="column" gap={1}>
-          <InputLabel htmlFor="password">Password</InputLabel>
+          <InputLabel htmlFor="password" data-testid="passwordLabel">
+            Password
+          </InputLabel>
           <TextField
             type="password"
             name="password"
+            slotProps={{
+              input: {
+                inputProps: {
+                  "data-testid": "passwordInput",
+                },
+              },
+            }}
             id="password"
             placeholder="Enter password"
             value={formData.password}
@@ -112,6 +130,7 @@ const Login = () => {
         <Button
           variant="contained"
           onClick={handleSubmit}
+          data-testid="loginButton"
           sx={{ fontWeight: "bold" }}
         >
           Log In

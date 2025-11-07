@@ -16,7 +16,7 @@ function ValidateField(fieldName: String, fieldValue: String) {
       if (fieldValue.trim().length === 0) {
         return "Email is required";
       } else if (!EMAIL_REGEX.test(fieldValue.trim())) {
-        return "Invalid email!";
+        return "Invalid email";
       }
       return "";
     case "password":

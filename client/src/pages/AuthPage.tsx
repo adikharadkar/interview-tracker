@@ -29,6 +29,7 @@ const AuthPage = () => {
         <Link
           onClick={() => setIsLogin((prev) => !prev)}
           sx={{ cursor: "pointer" }}
+          data-testid="linkToSignupOrLogin"
         >
           {isLogin ? "Sign Up" : "Log In"}
         </Link>
