@@ -28,29 +28,24 @@ const Navbar = ({
         <Typography variant="h5">Interview Tracker</Typography>
         {Cookies.get("token") && (
           <Box display="flex" justifyContent="space-between" width="20vw">
-            <Button variant="contained" onClick={() => onOpen(true)}>
+            <Button
+              variant="contained"
+              onClick={() => onOpen(true)}
+              data-testid="addApplicationButton"
+            >
               Add Application
             </Button>
-            <Button variant="outlined" onClick={handleLogout}>
+            <Button
+              variant="outlined"
+              onClick={handleLogout}
+              data-testid="logoutButton"
+            >
               Logout
             </Button>
           </Box>
         )}
       </Toolbar>
     </AppBar>
-    // <nav className="navbar">
-    //   <div className="navbar__header">
-    //     <h2 className="navbar__title">Interview Tracker</h2>
-    //   </div>
-    //   <ul className="navbar__items">
-    //     <li className="navbar__add_application">
-    //       <button>Add Application</button>
-    //     </li>
-    //     <li className="navbar__logout">
-    //       <button onClick={handleLogout}>Logout</button>
-    //     </li>
-    //   </ul>
-    // </nav>
   );
 };
 

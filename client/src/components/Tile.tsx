@@ -19,6 +19,7 @@ const Tile = ({ tileName, applicationCount, icon: Icon, iconBg }: IProps) => {
         width: 250,
         backgroundColor: "#fff",
       }}
+      data-testid="applicationCard"
     >
       <CardContent
         sx={{
@@ -29,10 +30,20 @@ const Tile = ({ tileName, applicationCount, icon: Icon, iconBg }: IProps) => {
         }}
       >
         <Box>
-          <Typography variant="body2" color="text.secondary" fontWeight={500}>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            fontWeight={500}
+            data-testid="tileName"
+          >
             {tileName}
           </Typography>
-          <Typography variant="h5" fontWeight="bold" mt={0.5}>
+          <Typography
+            variant="h5"
+            fontWeight="bold"
+            mt={0.5}
+            data-testid="tileCount"
+          >
             {applicationCount}
           </Typography>
         </Box>
@@ -45,6 +56,7 @@ const Tile = ({ tileName, applicationCount, icon: Icon, iconBg }: IProps) => {
             justifyContent: "center",
             backgroundColor: iconBg,
           }}
+          data-testid="tileIcon"
         >
           {Icon}
         </Box>

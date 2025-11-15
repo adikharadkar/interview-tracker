@@ -184,6 +184,7 @@ const ApplicationForm = ({
           id="status"
           //   defaultValue="Applied"
           onChange={handleSelectChange}
+          data-testid="statusInput"
         >
           <MenuItem value="Applied">Applied</MenuItem>
           <MenuItem value="Interviewing">Interviewing</MenuItem>
@@ -240,7 +241,11 @@ const ApplicationForm = ({
           onChange={handleChange}
         />
       </Box>
-      <Button variant="contained" onClick={handleSubmit}>
+      <Button
+        variant="contained"
+        onClick={handleSubmit}
+        data-testid="submitApplicationBtn"
+      >
         <AddIcon />
         <Typography
           sx={{ fontWeight: "bold", fontSize: "14px" }}

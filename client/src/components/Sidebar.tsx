@@ -9,7 +9,11 @@ const Sidebar = ({
   children: React.ReactNode;
   isOpen: boolean;
 }) => {
-  return <Box className={isOpen ? "sidebar open" : "sidebar"}>{children}</Box>;
+  return (
+    <Box className={isOpen ? "sidebar open" : "sidebar"} data-testid="sidebar">
+      {children}
+    </Box>
+  );
 };
 
 export default Sidebar;
